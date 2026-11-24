@@ -1,1 +1,10 @@
-{}
+{
+  "description": "Discover Tampa, Florida’s top attractions, local experiences, dining, and travel tips to plan a memorable visit.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
