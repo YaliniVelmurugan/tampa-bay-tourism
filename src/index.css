@@ -1,1 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    background: #f7f3ea;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: #ffcf63;
+    color: #113b3d;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .nav-link {
+    position: relative;
+    padding-block: 0.75rem;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0.35rem;
+    left: 0;
+    height: 1px;
+    background: #ffcf63;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #e55e3d;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 760px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
