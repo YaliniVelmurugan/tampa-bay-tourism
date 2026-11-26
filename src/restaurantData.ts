@@ -1,6 +1,7 @@
 import restaurantData from "./resources/restaurants.json";
 import { restaurantImageCredits, type RestaurantImageCreditId } from "./restaurantImageCredits";
 
+
 export const foodCategories = [
   "American",
   "Seafood",
