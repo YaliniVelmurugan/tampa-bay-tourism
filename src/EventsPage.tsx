@@ -1,15 +1,17 @@
 import { useMemo, useState } from 'react'
 
-type IconName = 'arrow' | 'calendar' | 'chevron' | 'pin' | 'search' | 'wave'
+type IconName = 'arrow' | 'calendar' | 'chevron' | 'menu' | 'pin' | 'search' | 'wave' | 'x'
 
 function Icon({ name, className = 'h-5 w-5' }: { name: IconName; className?: string }) {
   const paths: Record<IconName, React.ReactNode> = {
     arrow: <><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></>,
     calendar: <><path d="M6 2v4M18 2v4M3 9h18" /><rect x="3" y="4" width="18" height="17" rx="2" /></>,
     chevron: <path d="m9 18 6-6-6-6" />,
+    menu: <><path d="M4 7h16M4 12h16M4 17h16" /></>,
     pin: <><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
     search: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>,
     wave: <><path d="M3 9c3-3 6 3 9 0s6 3 9 0M3 15c3-3 6 3 9 0s6 3 9 0" /></>,
+    x: <><path d="m6 6 12 12M18 6 6 18" /></>,
   }
 
   return (
@@ -209,6 +211,7 @@ export default function EventsPage() {
   const [selectedDate, setSelectedDate] = useState('all')
   const [freeOnly, setFreeOnly] = useState(false)
   const [view, setView] = useState<'list' | 'calendar'>('list')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const filteredEvents = useMemo(() => {
     const searchTerm = query.trim().toLowerCase()
@@ -240,9 +243,10 @@ export default function EventsPage() {
               <span className="mt-1 block text-[9px] font-bold tracking-[.34em] text-white/75">FLORIDA</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-8 text-[12px] font-bold tracking-[.13em] lg:flex">
+          <nav className="hidden items-center gap-4 text-[10px] font-bold tracking-[.13em] lg:flex xl:gap-8 xl:text-[12px]">
             <a className="nav-link" href="/#discover">THINGS TO DO</a>
             <a className="nav-link text-[#ffcf63]" href="/events" aria-current="page">EVENTS</a>
+            <a className="nav-link" href="/places">PLACES TO GO</a>
             <a className="nav-link" href="/#plan">PLAN YOUR TRIP</a>
             <a className="nav-link" href="/#about">OUR TAMPA</a>
           </nav>
@@ -253,8 +257,26 @@ export default function EventsPage() {
             <a href="#events" className="grid h-11 w-11 place-items-center rounded-full border border-white/40 bg-black/10 lg:hidden" aria-label="Browse events">
               <Icon name="calendar" className="h-4 w-4" />
             </a>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="grid h-11 w-11 place-items-center rounded-full border border-white/40 bg-black/10 lg:hidden" aria-label="Toggle menu" aria-expanded={menuOpen} aria-controls="mobile-navigation">
+              <Icon name={menuOpen ? 'x' : 'menu'} />
+            </button>
           </div>
         </div>
+        {menuOpen && (
+          <nav id="mobile-navigation" className="mx-5 rounded-2xl bg-[#f7f3ea] p-6 text-[#113b3d] shadow-2xl lg:hidden">
+            {[
+              ['Things to do', '/#discover'],
+              ['Events', '/events'],
+              ['Places to go', '/places'],
+              ['Plan your trip', '/#plan'],
+              ['Our Tampa', '/#about'],
+            ].map(([label, href]) => (
+              <a key={label} onClick={() => setMenuOpen(false)} href={href} className="flex items-center justify-between border-b border-[#113b3d]/10 py-4 font-bold uppercase tracking-wider">
+                {label}<Icon name="chevron" className="h-4 w-4" />
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
       <main>

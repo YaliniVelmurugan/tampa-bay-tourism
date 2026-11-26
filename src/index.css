@@ -3,6 +3,7 @@
 @source './App.tsx';
 @source './EventsPage.tsx';
 @source './HomePage.tsx';
+@source './PlacesPage.tsx';
 
 @theme {
   --font-sans: 'DM Sans', sans-serif;

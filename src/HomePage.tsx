@@ -90,9 +90,10 @@ export default function App() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-8 text-[12px] font-bold tracking-[.13em] lg:flex">
+          <nav className="hidden items-center gap-4 text-[10px] font-bold tracking-[.13em] lg:flex xl:gap-8 xl:text-[12px]">
             <a className="nav-link" href="#discover">THINGS TO DO</a>
             <a className="nav-link" href="/events">EVENTS</a>
+            <a className="nav-link" href="/places">PLACES TO GO</a>
             <a className="nav-link" href="#plan">PLAN YOUR TRIP</a>
             <a className="nav-link" href="#about">OUR TAMPA</a>
           </nav>
@@ -106,6 +107,8 @@ export default function App() {
               onClick={() => setMenuOpen(!menuOpen)}
               className="grid h-11 w-11 place-items-center rounded-full border border-white/40 bg-black/10 lg:hidden"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               <Icon name={menuOpen ? 'x' : 'menu'} />
             </button>
@@ -113,9 +116,9 @@ export default function App() {
         </div>
 
         {menuOpen && (
-          <nav className="mx-5 rounded-2xl bg-[#f7f3ea] p-6 text-[#113b3d] shadow-2xl lg:hidden">
-            {['Things to do', 'Events', 'Plan your trip', 'Our Tampa'].map((item, index) => (
-              <a key={item} onClick={() => setMenuOpen(false)} href={['#discover', '/events', '#plan', '#about'][index]} className="flex items-center justify-between border-b border-[#113b3d]/10 py-4 font-bold uppercase tracking-wider">
+          <nav id="mobile-navigation" className="mx-5 rounded-2xl bg-[#f7f3ea] p-6 text-[#113b3d] shadow-2xl lg:hidden">
+            {['Things to do', 'Events', 'Places to go', 'Plan your trip', 'Our Tampa'].map((item, index) => (
+              <a key={item} onClick={() => setMenuOpen(false)} href={['#discover', '/events', '/places', '#plan', '#about'][index]} className="flex items-center justify-between border-b border-[#113b3d]/10 py-4 font-bold uppercase tracking-wider">
                 {item}<Icon name="chevron" className="h-4 w-4" />
               </a>
             ))}
