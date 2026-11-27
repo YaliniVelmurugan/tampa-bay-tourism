@@ -38,6 +38,7 @@ export type Restaurant = {
   neighborhood: string;
   area: NeighborhoodArea;
   cuisine: string;
+  address: string;
   foodCategories: FoodCategory[];
   description: string;
   url: string;
@@ -76,6 +77,7 @@ function isRestaurant(value: unknown): value is Restaurant {
     typeof record.area === "string" &&
     neighborhoodAreaSet.has(record.area) &&
     typeof record.cuisine === "string" &&
+    typeof record.address === "string" &&
     isFoodCategoryArray(record.foodCategories) &&
     typeof record.description === "string" &&
     typeof record.url === "string" &&

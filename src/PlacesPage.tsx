@@ -140,6 +140,10 @@ function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
         </div>
         <h3 className="mt-6 font-display text-2xl leading-tight">{restaurant.name}</h3>
         <p className="mt-3 flex-1 text-sm leading-6 text-[#31595a]">{restaurant.description}</p>
+        <p className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#31595a]">
+          <Icon name="pin" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#e55e3d]" />
+          {restaurant.address}
+        </p>
         <a
           href={restaurant.url}
           target="_blank"
@@ -166,7 +170,7 @@ export default function PlacesPage() {
   const filteredRestaurants = restaurants.filter((restaurant) => {
     const matchesQuery =
       !searchTerm ||
-      `${restaurant.name} ${restaurant.neighborhood} ${restaurant.area} ${restaurant.cuisine} ${restaurant.foodCategories.join(" ")} ${restaurant.description}`
+      `${restaurant.name} ${restaurant.neighborhood} ${restaurant.area} ${restaurant.cuisine} ${restaurant.address} ${restaurant.foodCategories.join(" ")} ${restaurant.description}`
         .toLowerCase()
         .includes(searchTerm);
     const matchesFoodCategory =
