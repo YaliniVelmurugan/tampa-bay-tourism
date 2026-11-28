@@ -35,3 +35,7 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 `src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
 
 Tailwind emits utility classes in `@layer utilities`, and CSS outside any cascade layer overrides every layer regardless of specificity. Put global element styles, such as resets and defaults for `body`, headings, `button`, or `input`, inside `@layer base { ... }` so utility classes on those elements still apply. Tailwind's Preflight already applies `box-sizing: border-box`, removes default margins, and sets `font: inherit` on form controls, so do not repeat those rules.
+
+## Address links
+
+Whenever the UI displays a physical address, make the address clickable and link it to Google Maps using a URL-encoded address query (for example, `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`). If a map icon appears beside the address, include it in the same link. Open external Google Maps links in a new tab with `target="_blank"` and `rel="noreferrer"`.

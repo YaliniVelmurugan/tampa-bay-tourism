@@ -11,17 +11,6 @@
     "imageCredits": ["columbiaVenue", "columbiaPaella"]
   },
   {
-    "name": "Columbia Restaurant-test",
-    "neighborhood": "Ybor City :)",
-    "area": "Historic Tampa",
-    "cuisine": "Spanish-Cuban",
-    "address": "2117 E 7th Ave, Tampa, FL 33605",
-    "foodCategories": ["Fine Dining"],
-    "description": "Spanish-Cuban dining at the Ybor City landmark, open since 1905.",
-    "url": "https://www.columbiarestaurant.com/ybor-city-tampa",
-    "imageCredits": ["columbiaVenue", "columbiaPaella"]
-  },
-  {
     "name": "Tiki Docks",
     "neighborhood": "Riverview",
     "area": "East Hillsborough",
